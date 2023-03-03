@@ -8,5 +8,6 @@ Features a serem desenvolvidas:
 - Exportar e importar dados de planilhas eletrônicas;
 - App Android;
 - Web App;
+- Dar sugestões de lojas próximas ao usuário (o usuário define a distância) com os preços mais baixos daquele mesmo produto (sendo que cada produto terá um código identificador no sistema).
 
 ![image](https://user-images.githubusercontent.com/108240122/222034940-340ab263-eb8a-430a-89b2-3f0637f9231c.png)
