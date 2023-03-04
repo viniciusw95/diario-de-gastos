@@ -126,7 +126,7 @@ public class Controller extends HttpServlet {
                 
                 double totalGasto = 0.0;
                 for (int i = 0, qtdGastos = gastosVista.size(); i < qtdGastos; i++) {
-                    totalGasto += gastosVista.get(i).getValorGasto();
+                    totalGasto += gastosVista.get(i).getValorProduto();
                 }
                 
                 request.setAttribute("totalGasto", totalGasto);
@@ -171,10 +171,10 @@ public class Controller extends HttpServlet {
 				loja.setId(resultSet.getInt("id_loja"));
                 loja.setNome(resultSet.getString("nome_loja"));
                 
-				gastoVista.setIdGasto(resultSet.getInt("id_produto"));
+				gastoVista.setIdProduto(resultSet.getInt("id_produto"));
 				gastoVista.setNomeGasto(resultSet.getString("nome_produto"));
 				gastoVista.setDiaGasto(resultSet.getString("hora"));
-				gastoVista.setValorGasto(resultSet.getDouble("valor_unit_produto"));
+				gastoVista.setValorProduto(resultSet.getDouble("valor_unit_produto"));
 				gastoVista.setQuantidadeProduto(resultSet.getInt("qtd_produto"));
 				gastoVista.setLoja(loja);				
 											
@@ -217,7 +217,7 @@ public class Controller extends HttpServlet {
         compraVista.setPessoa(pessoa);
         
 	    int idProduto = daoProduto.cadastrar(request.getParameter("nome-produto"));	
-	    compraVista.setIdGasto(idProduto);
+	    compraVista.setIdProduto(idProduto);
 	    compraVista.setDiaGasto(request.getParameter("hora-compra"));
 	    
 	    int idLoja = daoLoja.cadastrar(request.getParameter("nome-loja"));
@@ -229,14 +229,14 @@ public class Controller extends HttpServlet {
         
 	    compraVista.setNomeGasto(request.getParameter("nome-produto"));	    
 	    
-	    compraVista.setValorGasto(Double.parseDouble(request.getParameter("valor-produto")));
+	    compraVista.setValorProduto(Double.parseDouble(request.getParameter("valor-produto")));
 	    compraVista.setQuantidadeProduto(Integer.parseInt(request.getParameter("quant-produto")));
 	    	    
 	    System.out.println(pessoa.getIdPessoa());
-	    System.out.println(compraVista.getIdGasto());
+	    System.out.println(compraVista.getIdProduto());
 	    System.out.println(compraVista.getDiaGasto());
 	    System.out.println(compraVista.getNomeGasto());
-	    System.out.println(compraVista.getValorGasto());
+	    System.out.println(compraVista.getValorProduto());
 	    System.out.println(compraVista.getQuantidadeProduto());
 	    System.out.println(loja.getNome());
 
@@ -246,10 +246,10 @@ public class Controller extends HttpServlet {
 	    DAOCompraVista daoCompraVista = new DAOCompraVista();
 	    
 	    String valores[] = {Integer.toString(pessoa.getIdPessoa()), 
-	            Integer.toString(compraVista.getIdGasto()),
+	            Integer.toString(compraVista.getIdProduto()),
 	            compraVista.getDiaGasto(),
 	            Integer.toString(loja.getId()),
-	            Double.toString(compraVista.getValorGasto()),
+	            Double.toString(compraVista.getValorProduto()),
 	            Integer.toString(compraVista.getQuantidadeProduto())	            
 	            };
 	    daoCompraVista.cadastrar(valores);
@@ -262,14 +262,17 @@ public class Controller extends HttpServlet {
 	    try {
             while (resultSet.next()) {
                 GastoVista gastoVista = new GastoVista();
+                
+                gastoVista.setIdCompra(resultSet.getInt("id_compra"));
+                
                 Loja loja = new Loja();
                 loja.setId(resultSet.getInt("id_loja"));
                 loja.setNome(resultSet.getString("nome_loja"));
                 
-                gastoVista.setIdGasto(resultSet.getInt("id_produto"));
+                gastoVista.setIdProduto(resultSet.getInt("id_produto"));
                 gastoVista.setNomeGasto(resultSet.getString("nome_produto"));
                 gastoVista.setDiaGasto(resultSet.getString("hora"));
-                gastoVista.setValorGasto(resultSet.getDouble("valor_unit_produto"));
+                gastoVista.setValorProduto(resultSet.getDouble("valor_unit_produto"));
                 gastoVista.setQuantidadeProduto(resultSet.getInt("qtd_produto"));
                 gastoVista.setLoja(loja);               
                                             

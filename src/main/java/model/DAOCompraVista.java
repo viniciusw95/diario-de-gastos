@@ -35,7 +35,7 @@ public class DAOCompraVista extends DAO {
     public ResultSet getGastosVista(String dataInicial, String dataFinal) {
         String query = 
                 String.format(
-                "select nome_pessoa, produto.id_produto, nome_produto, hora, loja.id_loja, nome_loja, valor_unit_produto, qtd_produto \r\n"
+                "select id_compra, nome_pessoa, produto.id_produto, nome_produto, hora, loja.id_loja, nome_loja, valor_unit_produto, qtd_produto \r\n"
                 + "from compra_vista \r\n"
                 + "inner join pessoa\r\n"
                 + "inner join produto\r\n"
@@ -51,7 +51,7 @@ public class DAOCompraVista extends DAO {
     public ResultSet getGastosVista(int mesAtual, int anoAtual) {
         String query = 
                 String.format(
-                "select nome_pessoa, produto.id_produto, nome_produto, hora, loja.id_loja, nome_loja, valor_unit_produto, qtd_produto \r\n"
+                "select id_compra, nome_pessoa, produto.id_produto, nome_produto, hora, loja.id_loja, nome_loja, valor_unit_produto, qtd_produto \r\n"
                 + "from compra_vista \r\n"
                 + "inner join pessoa\r\n"
                 + "inner join produto\r\n"

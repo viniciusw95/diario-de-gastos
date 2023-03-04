@@ -19,6 +19,7 @@ String dataFinal = (String) request.getAttribute("dataFinal");
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="estilos.css"/>
+<script src="scripts.js"></script>
 <title>Listando gastos</title>
 </head>
 <body>
@@ -106,29 +107,36 @@ String dataFinal = (String) request.getAttribute("dataFinal");
     <table>
         <thead>
             <tr>
-                <th>Nome do gasto</th>
-                <th>Id do gasto</th>
-                <th>Dia do gasto</th>
+                <th>Id da compra</th>
+                <th>Nome do produto</th>
+                <th>Id do produto</th>
+                <th>Dia da compra</th>
                 <th>Loja</th>
-                <th>Valor do gasto (R$)</th>
+                <th>Valor do produto (R$)</th>
                 <th>Quantidade do produto</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="lista-compras">
             <% for (int i = 0; i < vista.size(); i++) { %>
-            <tr><td><%=vista.get(i).getNomeGasto()%></td>
-                <td><%=vista.get(i).getIdGasto() %></td>
+            
+            <tr>                
+                <td><%=vista.get(i).getIdCompra()%></td>
+                <td class="nome_produto"><%=vista.get(i).getNomeGasto()%></td>
+                <td class="id-gasto" id=""><%=vista.get(i).getIdProduto()%></td>
                 <td><%=vista.get(i).getDiaGasto()%></td>
                 <td><%=vista.get(i).getLoja().getNome() %></td>
-                <td><%=vista.get(i).getValorGasto()%></td>
-                <td><%=vista.get(i).getQuantidadeProduto() %></td>
-            </tr>
+                <td><%=vista.get(i).getValorProduto()%></td>
+                <td><%=vista.get(i).getQuantidadeProduto() %></td> 
+                <td><a href="abrir-edicao?id-compra=<%=vista.get(i).getIdCompra()%>">Editar</a></td>                  
+            </tr>                                    
             <%
             }
             %>
+            
         </tbody>
-
+        
     </table>
+    <input type="button" value="Salvar alterações" onclick="imprimir_compras('lista-compras')"/> 
 
     <h2>Adicionar gasto</h2>
     

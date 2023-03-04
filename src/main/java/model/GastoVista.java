@@ -4,11 +4,13 @@ public class GastoVista {
     private Pessoa pessoa;
     
     // TODO: trocar para um objeto da classe Produto (criar esta classe).
-    private int idGasto;
+    private int idProduto;
 	private String nomeGasto;
 	private String diaGasto;
-	private double valorGasto;
+	private double valorProduto;
 	private int quantidadeProduto;
+	
+	private int idCompra;
 	
 	private Loja loja; 
 		
@@ -18,11 +20,11 @@ public class GastoVista {
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
     }
-    public int getIdGasto() {
-        return idGasto;
+    public int getIdProduto() {
+        return idProduto;
     }
-	public void setIdGasto(int idGasto) {
-        this.idGasto = idGasto;
+	public void setIdProduto(int idProduto) {
+        this.idProduto = idProduto;
     }
 	public String getNomeGasto() {
 		return nomeGasto;
@@ -36,17 +38,23 @@ public class GastoVista {
 	public void setDiaGasto(String diaGasto) {
 		this.diaGasto = diaGasto;
 	}
-	public double getValorGasto() {
-		return valorGasto;
+	public double getValorProduto() {
+		return valorProduto;
 	}
-	public void setValorGasto(double valorGasto) {
-		this.valorGasto = valorGasto;
+	public void setValorProduto(double valorProduto) {
+		this.valorProduto = valorProduto;
 	}
     public int getQuantidadeProduto() {
         return quantidadeProduto;
     }
     public void setQuantidadeProduto(int quantidadeProduto) {
         this.quantidadeProduto = quantidadeProduto;
+    }       
+    public int getIdCompra() {
+        return idCompra;
+    }
+    public void setIdCompra(int idCompra) {
+        this.idCompra = idCompra;
     }
     public Loja getLoja() {
         return loja;
