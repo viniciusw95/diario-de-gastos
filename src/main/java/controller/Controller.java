@@ -25,7 +25,7 @@ import model.DAOProduto;
 /**
  * Servlet implementation class Controller
  */
-@WebServlet(urlPatterns = { "/Controller", "/listar", "/cadastrar", "/filtrar" })
+@WebServlet(urlPatterns = { "/Controller", "/listar", "/cadastrar", "/filtrar", "/salvar-edicao"})
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -140,6 +140,12 @@ public class Controller extends HttpServlet {
 		    cadastrarCompraVista(request, response);		  
 
 		    gastosVista = listarGastosAVista(dataInicial, dataFinal);
+		} else if (acao.equals("/salvar-edicao")) {
+	        System.out.println("Salvando edição..:");
+	        DAOCompraVista daoCompraVista = new DAOCompraVista();
+	        //ResultSet resultSet = daoCompraVista.getGastosVista(Integer.parseInt(request.getParameter("id-compra")));
+	        //gastosVista = this.toArrayList(resultSet);	        	      
+
 		}
 		
 		System.out.println("Mês inicial do filtro: " + dataInicial);

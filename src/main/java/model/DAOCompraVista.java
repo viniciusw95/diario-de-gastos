@@ -66,5 +66,22 @@ public class DAOCompraVista extends DAO {
         return resultSet;
     }
 
+    public ResultSet getGastosVista(int idCompra) {
+        String query = 
+                String.format(
+                "select id_compra, nome_pessoa, produto.id_produto, nome_produto, hora, loja.id_loja, nome_loja, valor_unit_produto, qtd_produto \r\n"
+                + "from compra_vista \r\n"
+                + "inner join pessoa\r\n"
+                + "inner join produto\r\n"
+                + "inner join loja\r\n"
+                + "where pessoa.id_pessoa = compra_vista.id_pessoa\r\n"
+                + "and produto.id_produto = compra_vista.id_produto\r\n"
+                + "and loja.id_loja = compra_vista.id_loja "
+                + "and '%s' == compra_vista.id_compra", idCompra);
+        
+        System.out.println(query);
+        ResultSet resultSet = super.executarQuery(query);
+        return resultSet;
+    }
 
 }

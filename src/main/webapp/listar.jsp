@@ -98,9 +98,7 @@ String dataFinal = (String) request.getAttribute("dataFinal");
 
     <%            
     }
-    %>
-    
-
+    %>    
     
     <h2>Listagem de gastos</h2>    
 
@@ -117,17 +115,18 @@ String dataFinal = (String) request.getAttribute("dataFinal");
             </tr>
         </thead>
         <tbody id="lista-compras">
-            <% for (int i = 0; i < vista.size(); i++) { %>
+            <% 
+            String paginaAtual = request.getServletPath();
+            for (int i = 0; i < vista.size(); i++) { %>
             
             <tr>                
-                <td><%=vista.get(i).getIdCompra()%></td>
-                <td class="nome_produto"><%=vista.get(i).getNomeGasto()%></td>
-                <td class="id-gasto" id=""><%=vista.get(i).getIdProduto()%></td>
-                <td><%=vista.get(i).getDiaGasto()%></td>
-                <td><%=vista.get(i).getLoja().getNome() %></td>
-                <td><%=vista.get(i).getValorProduto()%></td>
-                <td><%=vista.get(i).getQuantidadeProduto() %></td> 
-                <td><a href="abrir-edicao?id-compra=<%=vista.get(i).getIdCompra()%>">Editar</a></td>                  
+                <td class="id-compra"><%=vista.get(i).getIdCompra()%></td>
+                <td class="nome-produto" contenteditable="false"><%=vista.get(i).getNomeGasto()%></td>
+                <td class="id-produto" id=""><%=vista.get(i).getIdProduto()%></td>
+                <td class="hora-compra"><%=vista.get(i).getDiaGasto()%></td>
+                <td class="nome-loja"><%=vista.get(i).getLoja().getNome() %></td>
+                <td class="valor-produto" contenteditable="true"><%=vista.get(i).getValorProduto()%></td>
+                <td class="quant-produto"><%=vista.get(i).getQuantidadeProduto() %></td>                                
             </tr>                                    
             <%
             }
@@ -136,11 +135,13 @@ String dataFinal = (String) request.getAttribute("dataFinal");
         </tbody>
         
     </table>
-    <input type="button" value="Salvar alterações" onclick="imprimir_compras('lista-compras')"/> 
+    <input type="button" value="Salvar alterações" onclick="qget('lista-compras')"/> 
 
     <h2>Adicionar gasto</h2>
     
     <form id="cadastro" action="cadastrar" method="get">
+        
+        
         <label for="nome-pessoa">Nome da pessoa (temp): </label>
         <input type="text" id="nome-pessoa" name="nome-pessoa" value="Vinícius"/>
         
@@ -170,9 +171,7 @@ String dataFinal = (String) request.getAttribute("dataFinal");
     
     
     </form>
-    
-    
-    
+
 
 </body>
 </html>
