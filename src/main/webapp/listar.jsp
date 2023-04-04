@@ -1,177 +1,77 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList, model.GastoVista, model.Pessoa"%>
-<%
-ArrayList<GastoVista> vista = (ArrayList<GastoVista>) request.getAttribute("listaGastosVista");
-Pessoa pessoa = (Pessoa) request.getAttribute("pessoa");
-String meses[] = {"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
-        "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"}; 
-int mesAtual = (int) request.getAttribute("mesAtual");
-int anoAtual = (int) request.getAttribute("anoAtual");
-
-// filtros
-String dataInicial = (String) request.getAttribute("dataInicial");
-String dataFinal = (String) request.getAttribute("dataFinal");
-
-%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList, model.JavaBeans"%>    
+<% String resumo = (String) request.getAttribute("gson"); %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="estilos.css"/>
-<script src="scripts.js"></script>
-<title>Listando gastos</title>
+<title>Início</title>
 </head>
 <body>
-
-    <h1>Diário de gastos</h1>
+    Listagem
     
-    <form action="filtrar" method="get">    
-        <fieldset>
-            <legend>Filtros..: </legend>        
-            <fieldset>  
-                <legend>Filtragem mês único:</legend>
-            
-                <label for="mes-atual">Mês atual: </label>
-                <select name="mes-atual" id="mes-atual">
-                    
-                    <%
-                    for (int i = 0, tot = meses.length; i < tot; i++) {             
-                                                     
-                        if (i+1 == mesAtual) { 
-                            %> <option value="<%= i+1 %>" selected> <%= meses[i] %> </option> <%
-                        } else {
-                            %> <option value="<%= i+1 %>"> <%= meses[i] %> </option> <%
-                        }
-                                     
-                    }            
-                    %>                      
-                </select>        
-                
-                <div>
-                    <label for="ano-atual">Ano atual: </label>
-                    <input type="number" id="ano-atual" name="ano-atual" value="2023"/>
-                    
-                </div>
-                
-                <input type="submit" id="filtrar-mes-unico" name="filtrar-mes-unico" value="Filtrar mês único"/>  
-                
-            </fieldset>  
-            
-            <span>OU..:</span>
-            
-            <fieldset>
-                <legend>Filtragem intervalo: </legend>
-                
-                <label for="data-inicial">Data inicial: </label>
-                <input type="date" id="data-inicial" name="data-inicial" value="<%= dataInicial%>"/>
-
-                <label for="data-final">Data final: </label>
-                <input type="date" id="data-final" name="data-final" value="<%= dataFinal%>"/>            
-            
-                <input type="submit" id="filtrar-intervalo" name="filtrar-intervalo" value="Filtrar por intervalo"/>  
-                
-            </fieldset>
-                    
-        </fieldset>
-    </form>
-    
-    
-    <%
-    if (request.getAttribute("totalGasto") != null) { %>
-        <% double totalGasto = (double) request.getAttribute("totalGasto"); %>
-        <p>Renda de <%=pessoa.getNomePessoa() %> em <%= mesAtual %> - <%= anoAtual %>: R$ <%=pessoa.getRendaAtual().getRenda() %></p>
-    
-        <p>Gastou R$ <%= totalGasto %> em <%= mesAtual %>/<%= anoAtual %></p>
-        
-        <% double restante = pessoa.getRendaAtual().getRenda() - totalGasto; %>
-        
-        <% if (restante > 0.0) { %>
-            <p>Então, ainda pode gastar <%= restante %></p>
-        <%
-            
-        } else { %>
-            <p>Então, não pode gastar mais nada (faltando R$ <%= restante %>)</p>   
-        <%    
-        }
-        %>      
-
-    <%            
-    }
-    %>    
-    
-    <h2>Listagem de gastos</h2>    
-
     <table>
-        <thead>
-            <tr>
-                <th>Id da compra</th>
-                <th>Nome do produto</th>
-                <th>Id do produto</th>
-                <th>Dia da compra</th>
-                <th>Loja</th>
-                <th>Valor do produto (R$)</th>
-                <th>Quantidade do produto</th>
-            </tr>
-        </thead>
-        <tbody id="lista-compras">
-            <% 
-            String paginaAtual = request.getServletPath();
-            for (int i = 0; i < vista.size(); i++) { %>
-            
-            <tr>                
-                <td class="id-compra"><%=vista.get(i).getIdCompra()%></td>
-                <td class="nome-produto" contenteditable="false"><%=vista.get(i).getNomeGasto()%></td>
-                <td class="id-produto" id=""><%=vista.get(i).getIdProduto()%></td>
-                <td class="hora-compra"><%=vista.get(i).getDiaGasto()%></td>
-                <td class="nome-loja"><%=vista.get(i).getLoja().getNome() %></td>
-                <td class="valor-produto" contenteditable="true"><%=vista.get(i).getValorProduto()%></td>
-                <td class="quant-produto"><%=vista.get(i).getQuantidadeProduto() %></td>                                
-            </tr>                                    
-            <%
-            }
-            %>
-            
-        </tbody>
+        <tr>
+            <th>Listagem</th>
+            <th>- Resumo anual</th>
+        </tr>
+        <tr>
+            <th>Item / Mês </th>
+            <th>Jan</th>
+            <th>Fev</th>
+            <th>Mar</th>
+            <th>Abr</th>
+            <th>Mai</th>
+            <th>Jun</th>
+            <th>Jul</th>
+            <th>Ago</th>
+            <th>Set</th>
+            <th>Out</th>
+            <th>Nov</th>
+            <th>Dez</th>            
+        </tr>
+        <tbody id="corpo-resumo">
+            <tr></tr>
+        </tbody> 
         
+    
     </table>
-    <input type="button" value="Salvar alterações" onclick="qget('lista-compras')"/> 
+    
+    <script>
+        let texto = '<%= resumo %>';
+        const itens = JSON.parse(texto);
+        
+        let total = itens.length; 
+        let corpo = document.getElementById("corpo-resumo");
+        let i = 0;
+        let item_anterior = "";
+        while (i < total) {
+        	let item = document.getElementById("coditem-" + itens[i].idItem);
+        	
+        	if (item === null) {
+        		item = document.createElement("tr");
+        		item.id = "coditem-" + itens[i].idItem;
+                let item_nome = document.createElement("td");
+                item_nome.innerHTML = itens[i].nomeItem;
+                item.appendChild(item_nome);
+                corpo.appendChild(item);
+                // adiciona as células 'Mês' desse item
+                for (let j = 1; j <= 12; j++) {
+                    let valor = document.createElement("td");
+                    valor.className = "mes-" + j;
+                    item.appendChild(valor);                  
+                }
+        	}
+        	let valor = item.querySelector(".mes-" + itens[i].mes);
+            
+            valor.innerHTML = itens[i].total;
 
-    <h2>Adicionar gasto</h2>
-    
-    <form id="cadastro" action="cadastrar" method="get">
+        	i++;
+        }
         
         
-        <label for="nome-pessoa">Nome da pessoa (temp): </label>
-        <input type="text" id="nome-pessoa" name="nome-pessoa" value="Vinícius"/>
-        
-        <label for="nome-produto">Nome do produto: </label>
-        <input type="text" id="nome-produto" name="nome-produto" value=""/>
+    </script>
     
-        <label for="hora-compra">Hora da compra: </label>
-        <input type="datetime-local" id="hora-compra" name="hora-compra" value=""/>
-    
-        <label for="nome-loja">Nome da loja: </label>
-        <input type="text" id="nome-loja" name="nome-loja" value=""/>
-    
-        <label for="cep-loja">CEP da loja (opcional): </label>
-        <input type="text" id="cep-loja" name="cep-loja" value=""/>
-    
-        <label for="numero-loja">Número de endereço da loja (opcional): </label>
-        <input type="text" id="numero-loja" name="numero-loja" value=""/>
-        
-        <label for="valor-produto">Valor unitário do produto (R$): </label>
-        <input type="text" id="valor-produto" name="valor-produto" value=""/>
-        
-        <label for="quant-produto">Quantidade do produto: </label>
-        <input type="number" id="quant-produto" name="quant-produto" value=""/>
-        
-        
-        <input type="submit" value="Registrar compra">
-    
-    
-    </form>
-
-
 </body>
 </html>
