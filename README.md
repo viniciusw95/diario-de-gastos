@@ -1,5 +1,5 @@
 # diario-de-gastos
-Sistema para controlar e registrar gastos mensais de qualquer lugar, tornando fácil registrar as contas do dia-a-dia e assim, evitar perder o controle do que se gasta.
+Sistema para controlar e registrar gastos mensais de qualquer lugar, e comparar preços de lojas, tornando mais fácil economizar.
 
 O objetivo do sistema é funcionar no app Android e no navegador (desktop), para que em todo lugar, se possa registrar o que gastou, tornando mais fácil do que usar planilhas eletrônicas. Mas ao mesmo tempo, também permitirá exportar os dados gerados para as planilhas, e vice-versa, para ser um sistema flexível. 
 
