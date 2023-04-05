@@ -13,7 +13,6 @@ public class DAO {
     private String connectionURL = String.format("jdbc:mysql://localhost:3306/"
             + "despesas?useTimezone=true?serverTimezone=UTC",
             this.username, this.password);
-    private final String storedProcedures[] = {"GetTotalItemMes"};
     public DAO() {
         // TODO Auto-generated constructor stub
     }
@@ -32,20 +31,18 @@ public class DAO {
         } 
         return conn;        
     }
-    
-    public ResultSet getTotalItemMes() {
-        
+  
+    public ResultSet callQuery(String storedProcedureName) {
         Connection conn = this.getConnection();
         PreparedStatement ps;
         try {
-            ps = conn.prepareStatement("call GetTotalItemMes()");
+            ps = conn.prepareStatement("call " + storedProcedureName);
             ResultSet lista = ps.executeQuery();
             return lista;
         } catch (SQLException e) {
-            System.out.println("Erro em getTotalItemMes()..:");
+            System.out.println("Erro em " + storedProcedureName + "..:");
             e.printStackTrace();
         }
         return null;
     }
-    
 }

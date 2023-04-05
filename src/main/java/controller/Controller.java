@@ -17,6 +17,9 @@ import com.google.gson.Gson;
 
 import model.DAO;
 import model.JavaBeans;
+import model.tabelas.ItensAno;
+import model.tabelas.ResumoAnual;
+import model.tabelas.Tabela;
 
 /**
  * Servlet implementation class Controller
@@ -42,15 +45,23 @@ public class Controller extends HttpServlet {
 		System.out.println(action);
 		
 		DAO conexaoBanco = new DAO();
-		ResultSet resumoAnual = conexaoBanco.getTotalItemMes();
 		
-		ArrayList<JavaBeans> resumo = this.listagemResumida(resumoAnual);
+		ResultSet resumoAnual = conexaoBanco.callQuery("GetTotalItemMes()");
+		ResultSet itensAno = conexaoBanco.callQuery("GetNomesItensResumo()");
 		
-		String gson = new Gson().toJson(resumo);
+		ResumoAnual resumo = new ResumoAnual();
+		this.listagemResumida(resumoAnual, resumo);
 		
-		request.setAttribute("gson", gson);
+		ItensAno nomesDespesas = new ItensAno();
+		this.listagemResumida(itensAno, nomesDespesas);		
 		
 		
+		String resumoJs = new Gson().toJson(resumo);
+		String nomesDespesasJs = new Gson().toJson(nomesDespesas);
+		
+		request.setAttribute("resumo", resumoJs);
+		request.setAttribute("nomesDespesas", nomesDespesasJs);
+				
 		
 		RequestDispatcher rd = request.getRequestDispatcher("listar.jsp");            
         rd.forward(request, response);
@@ -64,24 +75,15 @@ public class Controller extends HttpServlet {
 		doGet(request, response);
 	}
 
-	public ArrayList<JavaBeans> listagemResumida(ResultSet resumoAnual) {
+	public void listagemResumida(ResultSet resumoAnual, Tabela destino) {
 	    try {
-	        ArrayList<JavaBeans> resumo = new ArrayList<JavaBeans>();
-	        JavaBeans itemPago;
 	        while (resumoAnual.next()) {                
-                itemPago = new JavaBeans(resumoAnual.getInt("cod_item"),
-                        resumoAnual.getString("nome_item"),
-                        resumoAnual.getDouble("total_item_mes"),
-                        resumoAnual.getInt("mes_despesa"),
-                        resumoAnual.getInt("ano_despesa"));
-                resumo.add(itemPago);                
+                destino.add(resumoAnual);
             }
-	        return resumo;
         } catch (SQLException e) {
-            System.out.println("Erro em listagemResumida()");
+            System.out.println("Erro em listagemResumida()..:");
             e.printStackTrace();
         }
-	    return null;
 	}
 	
 }
