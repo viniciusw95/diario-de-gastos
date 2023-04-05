@@ -24,7 +24,7 @@ import model.tabelas.Tabela;
 /**
  * Servlet implementation class Controller
  */
-@WebServlet(urlPatterns = {"/Controller", "/listagem"})
+@WebServlet(urlPatterns = {"/Controller", "/listagem", "/cadastro"})
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -43,6 +43,12 @@ public class Controller extends HttpServlet {
 	    String action = request.getServletPath();
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		System.out.println(action);
+		
+		if (action.equals("/cadastro")) {
+		    System.out.println("funcionou");
+		    return;
+		}
+		
 		
 		DAO conexaoBanco = new DAO();
 		

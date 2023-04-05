@@ -10,7 +10,7 @@
 <title>Início</title>
 </head>
 <body>
-    Listagem
+    
     
     <table>
         <tr>
@@ -79,6 +79,8 @@
         }            
         
     </script>
+    
+    <a href="cadastro.jsp">Cadastrar nova despesa</a>
     
 </body>
 </html>
