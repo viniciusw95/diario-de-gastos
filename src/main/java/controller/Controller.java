@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import model.DAO;
+import model.ItemDespesa;
 import model.JavaBeans;
 import model.tabelas.ItensAno;
 import model.tabelas.ResumoAnual;
@@ -45,6 +46,24 @@ public class Controller extends HttpServlet {
 		System.out.println(action);
 		
 		if (action.equals("/cadastro")) {
+		    
+		    DAO conexaoBanco = new DAO();
+		    // TODO: fazer integração com a página cadastro.jsp
+		    int idUsuario = 1;
+		    String descricaoDespesa = "Despesa inserida pelo Eclipse 7.0!";
+		    
+		    ItemDespesa item1 = new ItemDespesa("Dev de software7.0", "Casa do pai", "2023-04-07",
+		            3, 20.50, "DEBITO");
+		    ItemDespesa item2 = new ItemDespesa("Dev de software2", "Casa da mamusca", "2023-04-07",
+                    3, 20.5, "DEBITO");
+		    ArrayList<ItemDespesa> itens = new ArrayList<ItemDespesa>();
+		    itens.add(item1);
+		    itens.add(item2);
+		    
+		    /* ------------------- */
+		    
+		    conexaoBanco.inserirDespesa(idUsuario, descricaoDespesa, itens);
+		    
 		    System.out.println("funcionou");
 		    return;
 		}

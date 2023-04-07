@@ -8,7 +8,11 @@ public class JavaBeans {
     private String nomeItem = null;
     private double total;
     private int mes;
-    private int ano;       
+    private int ano;
+    
+    public JavaBeans() {
+        
+    }
     
     public JavaBeans(int idItem, String nomeItem, double total, int mes, int ano) {
         super();
@@ -25,9 +29,13 @@ public class JavaBeans {
         this.nomeItem = nomeItem;
         this.ano = ano;
     }
-    
-    public void lerDados(ResultSet dados) {};
 
+    public void lerDados(ResultSet dados) {};
+    
+    public String getNomeItem() {
+        return nomeItem;
+    }
+    
     protected void setNomeItem(String nomeItem) {
         this.nomeItem = nomeItem;
     }
