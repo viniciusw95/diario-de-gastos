@@ -10,7 +10,11 @@ Features a serem desenvolvidas:
 - Web App;
 - Dar sugestões de lojas próximas ao usuário (o usuário define a distância) com os preços mais baixos daquele mesmo produto (sendo que cada produto terá um código identificador no sistema).
 
+### Protótipo do front-end:
+
 ![image](https://user-images.githubusercontent.com/108240122/222926155-0b52ae42-ee61-449c-b3db-c81a29f03e2a.png)
+
+### Modelo Conceitual:
 
 ![image](https://user-images.githubusercontent.com/108240122/230748409-6620b3b6-bff5-49d6-929b-bce619b185ae.png)
 
