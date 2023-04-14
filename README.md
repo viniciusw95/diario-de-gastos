@@ -1,14 +1,7 @@
 # diario-de-gastos
-Sistema para controlar e registrar gastos mensais de qualquer lugar, e comparar preços de lojas, tornando mais fácil economizar.
+O objetivo do aplicativo é registrar gastos mensais de qualquer lugar, e comparar preços de lojas próximas do usuário a partir do registro de outros usuários.
 
-O objetivo do sistema é funcionar no app Android e no navegador (desktop), para que em todo lugar, se possa registrar o que gastou, tornando mais fácil do que usar planilhas eletrônicas. Mas ao mesmo tempo, também permitirá exportar os dados gerados para as planilhas, e vice-versa, para ser um sistema flexível. 
-
-Features a serem desenvolvidas:
-- Registrar gastos à vista, parcelados e contas fixas;
-- Exportar e importar dados de planilhas eletrônicas;
-- App Android;
-- Web App;
-- Dar sugestões de lojas próximas ao usuário (o usuário define a distância) com os preços mais baixos daquele mesmo produto (sendo que cada produto terá um código identificador no sistema).
+> Status do projeto: em desenvolvimento
 
 ### Protótipo do front-end:
 
