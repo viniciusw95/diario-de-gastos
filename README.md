@@ -3,6 +3,8 @@ O objetivo do aplicativo é registrar gastos mensais de qualquer lugar, e compar
 
 > Status do projeto: em desenvolvimento
 
+> Tecnologias utilizadas: Java, HTML, CSS e JavaScript.
+
 ### Protótipo do front-end:
 
 ![image](https://user-images.githubusercontent.com/108240122/222926155-0b52ae42-ee61-449c-b3db-c81a29f03e2a.png)
